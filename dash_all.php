@@ -27,18 +27,22 @@
 <?php  
                         // $protocol = $_SERVER['HTTPS'] =  '?'. 'https'. ':' .'http';
                         
-                        session_start();
-                        if(empty($_SESSION)) {
-                                   
-                        $url = $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-                        $url_components = parse_url($url);
-                         parse_str($url_components['query'], $params);
+                        // session_start();
              
-                         $_SESSION["id_user"] = $params['id_user'];
-                         $_SESSION["email_user"] = $params['email_user'];
-                         $_SESSION["nom"] = $params['nom'];
-                         $_SESSION["prnom"] = $params['prnom'];
-                        }
+                                   
+                        // $url = $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                        // $url_components = parse_url($url);
+                        //  parse_str($url_components['query'], $params);
+                        //  $_SESSION["id_user"] = null;
+                        //  $_SESSION["email_user"] = null;
+                        //  $_SESSION["nom"] = null;
+                        //  $_SESSION["prnom"] = null;
+                        
+                        //  $_SESSION["id_user"] = $params['id_user'];
+                        //  $_SESSION["email_user"] = $params['email_user'];
+                        //  $_SESSION["nom"] = $params['nom'];
+                        //  $_SESSION["prnom"] = $params['prnom'];
+                      
                          
 ?>
     <!-- Page Wrapper -->
@@ -107,7 +111,7 @@
                     <span>Offre</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="get_offre.php.php">
+                <a class="nav-link" href="get_offre_filter.php">
                     <i class="fas fa-regular fa-cart-plus"></i>
                     <span>Product</span></a>
             </li>
@@ -305,20 +309,18 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php 
-                                print( $_SESSION["nom"]. " ". $_SESSION["prnom"] );
-
-                                ?></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"   >
+                                <span id="nom_prenom"></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
-                            </a>
+                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
 
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" onClick="reply_click2()"></i>
                                     Logout
                                 </a>
                             </div>
@@ -542,7 +544,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="getLogin.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -586,6 +588,10 @@
 });
 
 $(document).ready(function() {
+const nom = window.localStorage.getItem('nom');
+const prenom = window.localStorage.getItem('prnom');
+// 
+document.getElementById("nom_prenom").innerHTML = nom +" "+prenom;
             
             $.ajax({
             url: 'project_Backend/other_req/getNbroOffre.php',
@@ -613,6 +619,10 @@ $(document).ready(function() {
             }
             });
 });
+function reply_click2(){
+    sessionStorage.clear();  
+    window.location.href = "http://localhost/frontEnd/getLogin.php" ;
+}
 
 //
 </script>

@@ -79,7 +79,7 @@
                     <span>Offre</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="get_offre.php.php">
+                <a class="nav-link" href="get_offre_filter.php">
                     <i class="fas fa-regular fa-cart-plus"></i>
                     <span>Product</span></a>
             </li>
@@ -287,7 +287,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                <span id="nom_prenom"></span>
+                               
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -296,10 +298,10 @@
                                 aria-labelledby="userDropdown">
 
                                 <div class="dropdown-divider"></div>
-                                <form method="post">
+                                
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    <button type="submit" hidden value="Button1"></button>
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" onClick="reply_click2()"></i>
+                                    
                                     Logout
                                 </a>
                                 </form>
@@ -385,7 +387,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="project_Backend/users/lougout.php.php" method="post">
+                <form action="project_Backend/users/<span>Article </span></a>.php" method="post">
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -438,6 +440,17 @@
             });
     
 });
+const nom = window.localStorage.getItem('nom');
+const prenom = window.localStorage.getItem('prnom');
+// 
+document.getElementById("nom_prenom").innerHTML = nom +" "+prenom;
+
+
+function reply_click2(){
+    sessionStorage.clear();  
+    window.location.href = "http://localhost/frontEnd/getLogin.php" ;
+}
+
 </script>
 </body>
 

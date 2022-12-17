@@ -118,7 +118,13 @@ var email =document.getElementById("email").value ;
         success:function(result){
             const res = result ;
             const obj = JSON.parse(res);
-              window.location.href = "http://localhost/frontEnd/dash_all.php?id_user="+obj.id_user+"&email_user="+obj.email_user+"&nom="+obj.nom_user+"&prnom="+obj.prenom_user; 
+        
+            window.localStorage.setItem('id_user', JSON.stringify(obj.id_user));
+            window.localStorage.setItem('email_user', JSON.stringify(obj.email_user));
+            window.localStorage.setItem('nom', JSON.stringify(obj.nom_user));
+            window.localStorage.setItem('prnom', JSON.stringify(obj.prenom_user));
+
+              window.location.href = "http://localhost/frontEnd/dash_all.php"; 
            
 
     },

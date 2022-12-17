@@ -6,8 +6,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $prix_remise_offre=$_POST['prix_remise_offre'];
     $frais_livraison_offre=$_POST['frais_livraison_offre']; 
     $date_debut_offre=$_POST['date_debut_offre'];
-    $date_fin_offre=$_POST['date_fin_offre']; 
-
+    $date_fin_offre=$_POST['date_fin_offre'];  
     $sql="INSERT INTO `offre`(`nom_article`,`titre_offre`, `prix_remise_offre`, `frais_livraison_offre`, `date_debut_offre`, `date_fin_offre`) VALUES 
     ( '$nom_article','$titre_offre', '$prix_remise_offre', '$frais_livraison_offre', '$date_debut_offre', '$date_fin_offre')";
 
