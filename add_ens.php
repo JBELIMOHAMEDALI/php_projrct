@@ -314,7 +314,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user" name = "adr_boutique" id="adr_boutique"
-                                            placeholder="Price">
+                                            placeholder="Shop Address">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -401,9 +401,15 @@
      adr_boutique = document.getElementById("adr_boutique").value ;
      tel_boutique = document.getElementById("tel_boutique").value ;
  
-if(libelle_enseigne =="" || url =="" &&  nom_boutique ==""&& adr_boutique == ""&& tel_boutique == ""){
+if(libelle_enseigne =="" && url =="" &&  (nom_boutique ==""&& adr_boutique == ""&& tel_boutique == "")){
     alert("check your field")  
 }else
+nom_user = document.getElementById("libelle_enseigne").value = "";
+     prenom_user = document.getElementById("url").value = "";
+     email_user =document.getElementById("nom_boutique").value = "";
+     passwared_user = document.getElementById("adr_boutique").value = "";
+     passwared_user = document.getElementById("tel_boutique").value = "";
+
     $.ajax({ 
       type: "POST",
       url: "http://localhost/frontEnd/project_Backend/enseigne/insert.php",
@@ -414,13 +420,13 @@ if(libelle_enseigne =="" || url =="" &&  nom_boutique ==""&& adr_boutique == ""&
         adr_boutique:adr_boutique,
         tel_boutique:tel_boutique},
       success: function () {
-        nom_user = document.getElementById("libelle_enseigne").value = "";
+     nom_user = document.getElementById("libelle_enseigne").value = "";
      prenom_user = document.getElementById("url").value = "";
      email_user =document.getElementById("nom_boutique").value = "";
      passwared_user = document.getElementById("adr_boutique").value = "";
      passwared_user = document.getElementById("tel_boutique").value = "";
 
-     window.location.href = "http://localhost/frontEnd/tab_ens.php" ;
+    //window.location.href = "http://localhost/frontEnd/tab_ens.php" ;
 
       },
       error: function () {

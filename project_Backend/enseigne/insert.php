@@ -1,25 +1,30 @@
 <?php
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     require_once "../db.php";
-    $libelle_enseigne = $_POST['libelle_enseigne'];
-     
-    $sql = "" ;
-       if(isset($_POST['url'])){
+    $libelle_enseigne ="";
+    $url ="";
+    $nom_boutique ="";
+    $adr_boutique = "";
+    $tel_boutique = "";
+        $libelle_enseigne = $_POST['libelle_enseigne'];
         $url = $_POST['url'];
-        $sql="INSERT INTO `enseigne`(`libelle_enseigne`, `url`) VALUES
-        ('$libelle_enseigne','$url');";
-        }else{
-            $nom_boutique =  $_POST['nom_boutique'];
-           $adr_boutique = $_POST['adr_boutique'];
-          $tel_boutique =   $_POST['tel_boutique'];
-        $sql="INSERT INTO `enseigne`(`libelle_enseigne`, `nom_boutique`, `adr_boutique`, `tel_boutique`) VALUES
-       ( '$libelle_enseigne', '$nom_boutique', '$adr_boutique', '$tel_boutique');";
-        }
+        $nom_boutique =  $_POST['nom_boutique'];
+        $adr_boutique = $_POST['adr_boutique'];
+        $tel_boutique =   $_POST['tel_boutique'];
+          $sql="INSERT INTO `enseigne`(`libelle_enseigne`,`url`, `nom_boutique`, `adr_boutique`, `tel_boutique`) VALUES ('".$libelle_enseigne."','".$libelle_enseigne."','".$libelle_enseigne."','".$libelle_enseigne."','".$libelle_enseigne."');";//nom_boutique
+  
+                $res=$db->exec($sql);
+        
     $res=$db->exec($sql);
     if($res){
+        $obj = (object) array('libelle_enseigne'=>$libelle_enseigne,
+        'url'=>$url,
+        'nom_boutique'=>$nom_boutique,
+        'adr_boutique'=>$adr_boutique,
+        'tel_boutique'=>$tel_boutique );
         // $data=$query->fetchAll(PDO::FETCH_ASSOC);
         $json['success']=1;
-        $json['message']=$res>0;
+        $json['message']=$obj;
         echo json_encode($json);
 
     } else {
